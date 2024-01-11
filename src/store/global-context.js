@@ -23,7 +23,7 @@ export function GlobalStateContextProvider(props) {
   const [token, setToken] = useState(false);
 
   const hostName =
-    process.env.REACT_APP_ENV === "dd"
+    process.env.REACT_APP_ENV === "development"
       ? "http://127.0.0.1:4000"
       : "http://8.134.236.92:4000";
 
