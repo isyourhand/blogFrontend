@@ -22,6 +22,11 @@ export function GlobalStateContextProvider(props) {
   // authentication
   const [token, setToken] = useState(false);
 
+  const hostName =
+    process.env.REACT_APP_ENV === "dd"
+      ? "http://127.0.0.1:4000"
+      : "http://8.134.236.92:4000";
+
   function changeTokenHandler(token) {
     setToken(token);
     console.log(token);
@@ -41,7 +46,7 @@ export function GlobalStateContextProvider(props) {
   async function getDir(lan) {
     try {
       const res = await fetch(
-        `http://127.0.0.1:4000/${lan}/api/dir/${
+        `${hostName}/${lan}/api/dir/${
           lan === "cn" ? "6562436223c603f25345c2c8" : "6582bfd5495b133c7bfea0ab"
         }`,
         {
