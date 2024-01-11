@@ -1,0 +1,35 @@
+.section_1{
+    padding-left: 10%;
+    /* border-top: 0.5px solid #cec2c2; */
+}
+a {
+    text-decoration: none;
+}
+.Labels_{ 
+    font-size: 13px;
+    margin-bottom: 30px;
+    display:flex;
+    
+    /* justify-content: center; */
+}
+
+.Label_{
+    font-family: "Arial";
+    margin-right: 13px;
+    margin-top: 5px;
+    height: 30px;
+    width: 90px;
+    padding: 0.3rem 0;
+    border-radius: 3rem;
+    background-color: #7bdda7;
+    color: black;
+   text-align: center;
+}
+
+
+
+.Label_:hover{
+    color: inherit;
+    background-color: #4bbb7d;
+    color: #333;
+  }

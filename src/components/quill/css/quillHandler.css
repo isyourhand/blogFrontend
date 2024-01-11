@@ -1,0 +1,14 @@
+.resizable-container{
+    position: relative;
+    display: inline;
+    border: 2px dashed #007bff;
+    overflow: hidden;    
+}
+.test{
+    width: 200px;
+    height: 300px;
+}
+
+
+
+.bottom-right { bottom: 0; right: 0; cursor: nwse-resize; }

@@ -1,0 +1,152 @@
+
+.form__Layout{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.newPost__form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 800px;
+   
+    text-align: center;
+  }
+
+
+
+  .newPost__label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+
+  input{
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+
+
+  .newPost__button {
+    background-color: #4caf50;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+  }
+
+  .newPost__button:hover {
+    background-color: #45a049;
+  }
+
+  .quill{
+    /* border: 0.1px solid #ccc; */
+    height: 400px;
+    padding-bottom: 10px;
+   
+  }
+
+
+
+
+
+
+
+  /* Reset default styles */
+select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    padding: 8px;
+    width: 100%;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: white;
+
+  }
+  
+  /* Style when the dropdown is open */
+  select:focus {
+    border-color: #4caf50;
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+  }
+  
+  /* Style the arrow icon */
+  select::after {
+    content: '\25BC'; /* Unicode character for down arrow */
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    pointer-events: none;
+  }
+  
+  /* Style options */
+  option {
+    padding: 10px;
+    font-size: 16px;
+  }
+  
+  /* Hover effect on options */
+  option:hover {
+    background-color: #f0f0f0;
+  }
+
+
+
+  /* select Folder */
+
+  .custom-dropdown {
+    position: relative;
+    z-index: 10;
+    
+  }
+  
+  .selected-option {
+    cursor: pointer;
+    padding-top: 3px;
+    border: 1px solid #ccc;
+    font-weight: bold;
+    font-size: 15px;
+    height: 40px;
+  }
+  
+  .dropdown-options {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border: 1px solid #ccc;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 250px;
+    background-color: #fff;
+    font-weight: bold;
+    overflow: auto;
+  }
+  
+  .options {
+    background-color: #f3f3f3;
+    cursor: pointer;
+    border-bottom: 1px solid #ccc;
+    text-align: left;
+    height: 30px;
+    padding-left: 10px;
+  }
+  
+  /* .dropdown-options li:last-child {
+    border-bottom: none;
+  } */

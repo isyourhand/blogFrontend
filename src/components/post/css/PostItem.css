@@ -1,0 +1,48 @@
+
+
+
+  .post {
+    border: 1px  #ddd;
+    margin-bottom: 1px;
+    padding: 5px;
+  }
+
+  .post-title-link{
+    display: flex;
+    
+  }
+
+  .post-title {
+    
+    font-size: 1.5rem;
+    margin-bottom: 1px;
+  }
+
+  .post-content {
+    /* white-space: pre-wrap; */
+    color: #555;
+    font-size: 1.5rem;
+    min-width: 400px;
+  }
+
+  .post-labels-container {
+    display: flex;
+  }
+
+  .post_label {
+    margin-left: 5px;
+    margin-top: 5px;
+    height: 21px;
+    width: 70px;
+    padding: 0.1rem 0.2rem;
+    border-radius: 3rem;
+    background-color: #5ec5763a;
+    color: black;
+    text-align: center;
+  }
+  
+  .post_label:hover{
+    color: inherit;
+    background-color: #4bbb7d;
+    color: #333;
+  }

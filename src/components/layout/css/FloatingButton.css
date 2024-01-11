@@ -1,0 +1,45 @@
+.floating-button-translate {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 45px;
+    height: 45px;
+    background-color: #5ec576;
+    border-radius: 50%; /* 使元素成为圆形 */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* 添加阴影效果 */
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff; /* 设置文本颜色 */
+    font-size: 20px;
+}
+
+.floating-button-translate:hover{
+    border-radius: 3rem;
+    background-color: #4bbb7d;
+    box-shadow: 0 1px 15px rgba(0, 0, 0, 0.2);
+}
+
+.floating-button-login{
+    position: fixed;
+    bottom: 20px;
+    right: 80px;
+    width: 45px;
+    height: 45px;
+    
+    border-radius: 50%; /* 使元素成为圆形 */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* 添加阴影效果 */
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff; /* 设置文本颜色 */
+    font-size: 20px;
+}
+
+.floating-button-login:hover{
+    border-radius: 3rem;
+    background-color: #4bbb7d;
+    box-shadow: 0 1px 15px rgba(0, 0, 0, 0.2);
+}

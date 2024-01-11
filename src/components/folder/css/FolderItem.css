@@ -1,0 +1,64 @@
+
+
+/* section a {
+  color: #fff;
+  display: block;
+  padding: 10px 15px; 
+  text-decoration: none;
+} */
+
+.folder {
+  padding-left: 10px;
+ 
+  /* border-bottom: 1px solid ; */
+}
+
+.folder img{
+  width: 20px;
+  height: 20px;
+}
+
+.folder a {
+  color: black;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 5px 9px;
+ 
+  margin: 5px;
+  border-radius: 3rem;
+}
+
+.folder a:hover {
+  border-radius: 3rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+
+.file {
+  padding-left: 10px;
+  /* border-bottom: 1px solid ; */
+}
+
+.file a {
+  color: black;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  font-weight:lighter;
+}
+
+
+
+
+.dismiss {
+  display: none;
+}
+
+.arrow {
+  /* text-align: right; */
+}
+
