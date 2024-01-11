@@ -73,7 +73,7 @@ export function GlobalStateContextProvider(props) {
     try {
       console.log("start getting data...");
       const res = await fetch(
-        `http://127.0.0.1:4000/${lan}/api/postLanCollection/${keyName}`,
+        `${hostName}/${lan}/api/postLanCollection/${keyName}`,
         {
           method: "GET",
         }
@@ -98,7 +98,7 @@ export function GlobalStateContextProvider(props) {
 
   useEffect(() => {
     console.log("folder? ->", Boolean(folder), folder.length === 0, language);
-    if (window.location.href === "http://localhost:3000/New") {
+    if (window.location.href === `${hostName}/New`) {
       console.log("enter 1");
       getDir("en");
       getDir("cn");
