@@ -3,39 +3,35 @@ import { createContext, useEffect, useState } from "react";
 const GlobalStateContext = createContext({
   language: "",
   changeLanguage: (lan) => {},
-  changeToken: (token) => {},
   folder: [],
   folderEn: [],
   post: "",
-  token: "",
   getDir: () => {},
   getPost: () => {},
 });
 
 export function GlobalStateContextProvider(props) {
-  const [language, setLanuage] = useState("en");
+  const [language, setLanuage] = useState("cn");
   const [folder, setFolder] = useState("");
   const [folderEn, setFolderEn] = useState("");
   const [post, setPost] = useState("");
   const [keyName, setKeyName] = useState("");
-
-  // authentication
-  const [token, setToken] = useState(false);
+  const [reRender, setReRender] = useState(false);
 
   const hostName =
     process.env.REACT_APP_ENV === "development"
       ? "http://127.0.0.1:4000"
       : "http://8.134.236.92:4000";
 
-  function changeTokenHandler(token) {
-    setToken(token);
-    console.log(token);
-  }
-
   function changeLanguageHandler(lan) {
+    console.log(lan);
     setLanuage((preLanguage) => {
       return lan;
     });
+  }
+
+  function changeReRenderHandler() {
+    setReRender((pre) => !pre);
   }
 
   function changePostHandler(keyName) {
@@ -98,33 +94,35 @@ export function GlobalStateContextProvider(props) {
 
   useEffect(() => {
     console.log("folder? ->", Boolean(folder), folder.length === 0, language);
-    if (window.location.href === `${hostName}/New`) {
+    if (window.location.href === "http://localhost:3000/New") {
       console.log("enter 1");
       getDir("en");
       getDir("cn");
-    } else if (!folder || !folderEn) {
+    } else if (!folder || !folderEn || reRender || !reRender) {
       console.log("enter 2");
-      getDir(language);
+      // getDir(language);
+      getDir("en");
+      getDir("cn");
     }
     if (keyName) getPost(language, keyName);
-  }, [language, keyName]);
+  }, [language, keyName, reRender]);
 
   // useEffect(() => {
-  //   console.log("post", post);
-  //   getPost(language, post);
-  // }, [post]);
+  //   console.log("rerender");
+  // }, [reRender]);
 
   const context = {
     language,
     changeLanguage: changeLanguageHandler,
     changePost: changePostHandler,
-    changeToken: changeTokenHandler,
+    changeReRender: changeReRenderHandler,
     getDir,
     getPost,
     post,
     folder,
     folderEn,
-    token,
+    hostName,
+    reRender,
   };
 
   return (

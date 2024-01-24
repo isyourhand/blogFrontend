@@ -26,6 +26,7 @@ function Overview() {
   console.log("env1", process.env);
 
   console.log("dir ->", dir);
+
   function getPostData(keyName) {
     GlobalStateCtx.changePost(keyName);
   }
@@ -72,9 +73,11 @@ function Overview() {
       <section className="sidercontent">
         {dir.length !== 0 ? (
           <FolderList
+            id={dir.id}
             name={dir.name}
             folderChildren={dir.subfolder}
             fileChildren={dir.subfile}
+            createdAt={dir.createdAt}
             depth={0}
             getPostData={getPostData}
           />

@@ -6,6 +6,7 @@ import Overview from "./pages/Overview";
 import PostListContainer from "./pages/PostListContainer";
 import NewPost from "./pages/NewPost";
 import PostDetail from "./pages/PostDetail";
+import { memo } from "react";
 
 function App() {
   return (
@@ -15,9 +16,20 @@ function App() {
         <Route path="/Posts" element={<PostListContainer />} />
         <Route path="/New" element={<NewPost />} />
         <Route path="/Posts/:postId" element={<PostDetail />} />
-      </Routes>
+      </Routes>{" "}
+      <Greeting name={"123"} />
     </Layout>
   );
 }
 
 export default App;
+
+const Greeting = memo(function Greeting({ name }) {
+  console.log("Greeting was rendered at", new Date().toLocaleTimeString());
+  return (
+    <h3>
+      Hello{name && ", "}
+      {name}!
+    </h3>
+  );
+});

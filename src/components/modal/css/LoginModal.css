@@ -29,7 +29,7 @@
     box-sizing: border-box;
   }
 
-  .login-card button {
+  .login-card-button {
     width: 100%;
     padding: 10px;
     background-color: #4bbb7d;

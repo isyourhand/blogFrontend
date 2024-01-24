@@ -10,10 +10,35 @@ const AuthStateContext = createContext({
 export function AuthStateContextProvider(props) {
   // authentication
   const [token, setToken] = useState("null");
-  const [loginState, setLoginState] = useState(
-    localStorage.getItem("loginState")
-  );
-  const [role, setRole] = useState(localStorage.getItem("role") || "user");
+  const [loginState, setLoginState] = useState(false);
+  const [role, setRole] = useState("user");
+
+  const getRole = async () => {
+    const hostName =
+      process.env.REACT_APP_ENV === "development"
+        ? "http://127.0.0.1:4000"
+        : "http://8.134.236.92:4000";
+    try {
+      const res = await fetch(`${hostName}/cn/api/users/whoami`, {
+        method: "GET",
+        credentials: "include",
+      });
+      const user = await res.json();
+
+      console.log(user);
+
+      if (user.status !== "error") {
+        setRole(user.role);
+        setLoginState(true);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    getRole();
+  }, []);
 
   function changeTokenHandler(token) {
     setToken(token);

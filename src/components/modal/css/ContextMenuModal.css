@@ -1,0 +1,23 @@
+
+
+.ContextMenuCard{
+    background-color: #fff;
+    border: 1px solid #ccc;
+    
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+
+  .MenuOption{
+    cursor: pointer;
+   padding: 8px 12px;
+   transition: background-color 0.3s ease;
+   font-weight: bold;
+  }
+
+  .MenuOption:hover {
+    background-color: #4bbb7d;;
+  }
+
+
+
+  

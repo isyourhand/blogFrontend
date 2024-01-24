@@ -2,8 +2,11 @@ import { useContext, useState } from "react";
 import "./css/LoginModal.css";
 import AuthStateContext from "../../store/auth-context";
 import axios from "axios";
+import AlertModal from "./AlertModal";
 
 function LoginModal(props) {
+  const [alert, setAlert] = useState(false);
+  const [msg, setMsg] = useState("error");
   const [credentials, setCredentials] = useState({
     email: "",
     password: "",
@@ -24,6 +27,14 @@ function LoginModal(props) {
       ...prevData,
       [name]: value,
     }));
+  };
+
+  const openAlertModal = () => {
+    setAlert(true);
+  };
+
+  const closeAlertModal = () => {
+    setAlert(false);
   };
 
   const login = async (data) => {
@@ -51,21 +62,19 @@ function LoginModal(props) {
 
       const user = await res.json();
 
-      if (user.status) {
-        changeLoginState(true);
-      }
-
-      console.log("cookie->", document.cookie);
-      // localStorage.setItem("jwt", user_.token);
-      // document.cookie = `jwt=${user_.token}`;
-      // changeToken(user_.token);
-      changeRole(user.data.user.role);
-
       console.log(user);
 
-      closeModal();
+      if (user.status === "success") {
+        changeLoginState(true);
 
-      alert("success!");
+        changeRole(user.data.user.role);
+        setMsg("Login Success!");
+        openAlertModal();
+        closeModal();
+      } else {
+        setMsg("Login Failure!");
+        openAlertModal();
+      }
     } catch (err) {
       console.error(err);
     }
@@ -104,9 +113,12 @@ function LoginModal(props) {
             onChange={handleInputChange}
           />
 
-          <button type="submit">Login</button>
+          <button className="login-card-button" type="submit">
+            Login
+          </button>
         </form>
       </div>
+      {alert ? <AlertModal closeModal={closeAlertModal} msg={msg} /> : ""}
     </div>
   );
 }

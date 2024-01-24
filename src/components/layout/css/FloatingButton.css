@@ -36,6 +36,7 @@
     justify-content: center;
     color: #fff; /* 设置文本颜色 */
     font-size: 20px;
+    z-index: 100;
 }
 
 .floating-button-login:hover{
