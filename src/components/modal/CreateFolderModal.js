@@ -6,6 +6,7 @@ import AlertModal from "./AlertModal";
 function CreateFolderModal(props) {
   const folderNameRef = useRef();
 
+  const [submit, setSubmit] = useState(true);
   const [alert, setAlert] = useState(false);
   const [msg, setMsg] = useState("error");
 
@@ -31,7 +32,7 @@ function CreateFolderModal(props) {
   const createSubFolder = async () => {
     try {
       const name = folderNameRef.current.value;
-      console.log(name);
+      // console.log(name);
       const res = await fetch(`${hostName}/${lan}/api/dir/create/${id}`, {
         method: "POST",
         headers: {
@@ -51,7 +52,7 @@ function CreateFolderModal(props) {
         closeModal();
       }
 
-      console.log(res_);
+      // console.log(res_);
     } catch (err) {
       console.log(err);
     }
@@ -63,6 +64,7 @@ function CreateFolderModal(props) {
         className="dialog"
         onSubmit={(e) => {
           e.preventDefault();
+          setSubmit(false);
           createSubFolder();
         }}
       >
@@ -87,9 +89,13 @@ function CreateFolderModal(props) {
           >
             取消
           </button>
-          <button className="MenuButton" type="submit">
-            确定
-          </button>
+          {submit ? (
+            <button className="MenuButton" type="submit">
+              确定
+            </button>
+          ) : (
+            ""
+          )}
         </div>
       </form>
       {alert ? <AlertModal closeModal={closeAlertModal} msg={msg} /> : ""}

@@ -8,6 +8,8 @@ import NewPost from "./pages/NewPost";
 import PostDetail from "./pages/PostDetail";
 import { memo } from "react";
 
+import MarkdownFactory from "./components/markdown/MarkdownFactory";
+
 function App() {
   return (
     <Layout>
@@ -16,7 +18,7 @@ function App() {
         <Route path="/Posts" element={<PostListContainer />} />
         <Route path="/New" element={<NewPost />} />
         <Route path="/Posts/:postId" element={<PostDetail />} />
-      </Routes>{" "}
+      </Routes>
       <Greeting name={"123"} />
     </Layout>
   );
@@ -27,9 +29,8 @@ export default App;
 const Greeting = memo(function Greeting({ name }) {
   console.log("Greeting was rendered at", new Date().toLocaleTimeString());
   return (
-    <h3>
-      Hello{name && ", "}
-      {name}!
-    </h3>
+    <footer>
+      <p>&copy; LYX BLOG. All Rights Reserved.</p>
+    </footer>
   );
 });

@@ -22,3 +22,12 @@ html {
   font-size: 62.5%;
   box-sizing: border-box;
 }
+
+footer {
+  font-size: 130%;
+  color: #7a7373;
+  padding-top: 70px;
+  
+  height: 100px;
+  width: 100%;
+}

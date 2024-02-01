@@ -2,6 +2,7 @@ import { useRef, useState, useContext } from "react";
 import "./css/NewPostForm.css";
 import QuillHandler from "../quill/QuillHandler";
 import NewPostFormFolder from "./NewPostForm_folder";
+import MarkdownFactory from "../markdown/MarkdownFactory";
 // import NewPostFormFolder from "./NewPostForm_folder";
 
 function NewPostForm(props) {
@@ -19,6 +20,9 @@ function NewPostForm(props) {
 
   const [content_, setContent] = useState("");
   const [contentEn_, setContentEn] = useState("");
+  const [file, setFile] = useState(null);
+  const [mdTextContent_cn, setMdTextContent_cn] = useState("");
+  const [mdTextContent_en, setMdTextContent_en] = useState("");
 
   const [selectedOption, setSelectedOption] = useState([
     "",
@@ -52,14 +56,14 @@ function NewPostForm(props) {
       secondTopic = secondTopicInputRef.current.value;
       introduction = introductionInputRef.current.value;
       keyName = keyNameRef.current.value;
-      content = content_;
+      content = mdTextContent_cn;
     } else {
       title = titleInputEnRef.current.value;
       topic = topicInputEnRef.current.value;
       secondTopic = secondTopicInputEnRef.current.value;
       introduction = introductionInputEnRef.current.value;
       keyName = keyNameEnRef.current.value;
-      content = contentEn_;
+      content = mdTextContent_en;
     }
 
     const postData = {
@@ -92,12 +96,33 @@ function NewPostForm(props) {
       : setSelectedOptionEn([id, name]);
   };
 
+  const handleDrop = async (e, lan) => {
+    e.preventDefault();
+    const droppedFile = e.dataTransfer.files[0];
+
+    // 处理拖拽进来的文件，例如上传到服务器或进行其他操作
+    console.log("Dropped file:", droppedFile);
+
+    setFile(droppedFile);
+
+    const reader = new FileReader();
+
+    const textContent = await droppedFile.text();
+    if (lan === "cn") setMdTextContent_cn(textContent);
+    else setMdTextContent_en(textContent);
+    console.log(await droppedFile.text());
+  };
+
+  const handleDragOver = (e) => {
+    e.preventDefault();
+  };
+
   return (
     <section className="form__Layout">
       <form className="newPost__form" onSubmit={(e) => submitHandler(e, "cn")}>
         <div>
           <label className="newPost__label">Title</label>
-          <input type="text" ref={titleInputRef} />
+          <input className="newPostInput" type="text" ref={titleInputRef} />
         </div>
         <div>
           <label className="newPost__label">Topic</label>
@@ -122,12 +147,16 @@ function NewPostForm(props) {
         </div>
         <div>
           <label className="newPost__label">Introduction</label>
-          <input type="text" ref={introductionInputRef} />
+          <input
+            className="newPostInput"
+            type="text"
+            ref={introductionInputRef}
+          />
         </div>
 
         <div>
           <label className="newPost__label">keyName</label>
-          <input type="text" ref={keyNameRef} />
+          <input className="newPostInput" type="text" ref={keyNameRef} />
         </div>
 
         <div>
@@ -154,12 +183,25 @@ function NewPostForm(props) {
           </div>
         </div>
 
-        <div>
+        {/* <div>
           <label className="newPost__label">content</label>
           <section className="quill">
             <QuillHandler getValue={getValue} lan={"cn"}></QuillHandler>
           </section>{" "}
+        </div> */}
+
+        <div
+          className="newPostMD"
+          onDrop={(e) => handleDrop(e, "cn")}
+          onDragOver={handleDragOver}
+        >
+          {file ? (
+            <MarkdownFactory markdown={mdTextContent_cn} />
+          ) : (
+            <p>Drag and drop a file here</p>
+          )}
         </div>
+
         <div>
           <button type="submit" className="newPost__button">
             Add Meetup
@@ -186,7 +228,7 @@ function NewPostForm(props) {
       <form className="newPost__form" onSubmit={(e) => submitHandler(e, "en")}>
         <div>
           <label className="newPost__label">TitleEn</label>
-          <input type="text" ref={titleInputEnRef} />
+          <input className="newPostInput" type="text" ref={titleInputEnRef} />
         </div>
         <div>
           <label className="newPost__label">TopicEn</label>
@@ -211,12 +253,16 @@ function NewPostForm(props) {
         </div>
         <div>
           <label className="newPost__label">IntroductionEn</label>
-          <input type="text" ref={introductionInputEnRef} />
+          <input
+            className="newPostInput"
+            type="text"
+            ref={introductionInputEnRef}
+          />
         </div>
 
         <div>
           <label className="newPost__label">keyName</label>
-          <input type="text" ref={keyNameEnRef} />
+          <input className="newPostInput" type="text" ref={keyNameEnRef} />
         </div>
 
         <div>
@@ -243,12 +289,25 @@ function NewPostForm(props) {
           </div>
         </div>
 
-        <div>
+        {/* <div>
           <label className="newPost__label">contentEn</label>
           <section className="quill">
             <QuillHandler getValue={getValue} lan={"en"}></QuillHandler>
           </section>{" "}
+        </div> */}
+
+        <div
+          className="newPostMD"
+          onDrop={(e) => handleDrop(e, "en")}
+          onDragOver={handleDragOver}
+        >
+          {file ? (
+            <MarkdownFactory markdown={mdTextContent_en} />
+          ) : (
+            <p>Drag and drop a file here</p>
+          )}
         </div>
+
         <div>
           <button type="submit" className="newPost__button">
             Add Meetup

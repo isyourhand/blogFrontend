@@ -121,7 +121,7 @@ function FolderList(props) {
       hidden={
         (parseInt(Date.now() / 1000, 10) -
           parseInt(new Date(createdAt).getTime() / 1000, 10) <
-          3 &&
+          5 &&
           parentColor === "rgb(75, 187, 125)") ||
         depth <= 1
           ? false
@@ -130,7 +130,11 @@ function FolderList(props) {
     >
       {depth > 0 ? (
         <Link
-          style={{ backgroundColor: backgroundColor, color: textColor }}
+          style={{
+            backgroundColor: backgroundColor,
+            color: textColor,
+            minWidth: "150px",
+          }}
           to="/"
           onClick={toggleDisplay}
           onContextMenu={handleContextMenu}
@@ -198,8 +202,8 @@ function FolderList(props) {
             }}
           >
             {file.title.length > 12
-              ? `${file.title.slice(0, 12)}...`
-              : file.title.slice(0, 12)}
+              ? `${file.title.slice(0, 30)}...`
+              : file.title.slice(0, 30)}
           </Link>
         </section>
       ))}

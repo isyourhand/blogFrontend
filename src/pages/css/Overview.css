@@ -69,3 +69,12 @@
     height: 100%;
     white-space: pre-wrap;
   }
+
+  /* markdown */
+  .updateArea{
+    padding: 5px;
+    white-space: pre-wrap;
+    font-size: 180%;
+    font-weight: 500;
+    border: 1px solid #ccc;
+  }

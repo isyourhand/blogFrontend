@@ -10,10 +10,11 @@ import GlobalStateContext from "../store/global-context";
 
 import editImg from "./img/edit.png";
 import AuthStateContext from "../store/auth-context";
+import MarkdownFactory from "../components/markdown/MarkdownFactory";
 
 function Overview() {
   const [editable, setEditable] = useState(false);
-  const [newContent, setNewContent] = useState("");
+  const [content, setContent] = useState("");
 
   const GlobalStateCtx = useContext(GlobalStateContext);
   const lan = GlobalStateCtx.language;
@@ -43,13 +44,12 @@ function Overview() {
     console.log("postDetail", postDetail);
     if (editable) {
       postDetail.content = value;
-      setNewContent(value);
+      setContent(value);
     }
   };
 
   async function updatePostContent() {
     try {
-      console.log(newContent);
       const doc = await fetch(
         `http://127.0.0.1:4000/${lan}/api/post/${postDetail._id}`,
         {
@@ -58,7 +58,7 @@ function Overview() {
             "Content-Type": "application/json",
           },
           credentials: "include",
-          body: JSON.stringify({ content: newContent }),
+          body: JSON.stringify({ content: postDetail.content }),
         }
       );
 
@@ -67,6 +67,36 @@ function Overview() {
       console.error(err);
     }
   }
+
+  const handleInput = (e) => {
+    console.log(e.target.innerText);
+    postDetail.content = e.target.innerText;
+  };
+
+  const Welcome_cn = `# 欢迎来到我的博客
+  看到左上角那个小头像了吗？点击可获取随机*建议*，也许挺有意思的，多点点？🤔  
+  &nbsp;  
+  > **左侧目录介绍**
+  
+  **值得一看**：收藏我自己编写专门供人阅读的文章，会努力写得清晰明白。🤓  
+  **个人收集**：我个人收集的新闻或文章，想必都是些好东西？                      
+  **文档**：记录一切我觉得值得记录的东西，但对他人阅读不一定不友好。  
+
+  &nbsp;  
+  **右下角的绿色按钮可以切换语言，只支持中英文。（本人英语水平一般，主要靠 gpt 翻译。😢）**
+  `;
+  const Welcome_en = `# Welcome to my blog!  
+  Have you noticed the small avatar in the top left corner? Click on it to get random "recommendations." It might be quite interesting. How about click it a bit more? 🤔
+  
+  &nbsp;  
+  > **Left Sidebar Introduction**  
+  
+  ***GoodtoRead***：A collection of articles that I have personally written for people to enjoy.  
+  ***SelfCollection***：News or articles that I have collected based on my personal interests.  
+  ***Docs***：A repository for everything I find worth documenting, although they may not be reader-friendly.  
+
+  &nbsp;  
+  **The green button in the bottom right corner allows you to switch languages, supporting only Chinese and English. (My English proficiency is average, mainly relying on GPT for translation. 😢)**`;
 
   return (
     <section className="Background">
@@ -99,21 +129,7 @@ function Overview() {
         )}
 
         {!postDetail ? (
-          <div>
-            <div
-              style={{
-                textAlign: "center",
-                fontSize: "25px",
-                fontWeight: "bold",
-              }}
-            >
-              欢迎来到我的博客
-            </div>
-            <div style={{ textAlign: "center", fontSize: "16px" }}>
-              看到左上角那个小头像了吗？点击可获取随机
-              ‘建议’，也许挺有意思的，多点点？🤔
-            </div>
-          </div>
+          <MarkdownFactory markdown={lan === "cn" ? Welcome_cn : Welcome_en} />
         ) : (
           <div>
             {postDetail.title !== "Welcome" && postDetail.title !== "欢迎" ? (
@@ -130,7 +146,31 @@ function Overview() {
               ""
             )}
 
-            <div className="quillContent">
+            <div>
+              {editable ? (
+                <div>
+                  <div
+                    className="updateArea"
+                    contentEditable={true}
+                    onInput={handleInput}
+                  >
+                    {postDetail.content}
+                  </div>
+                  <button
+                    style={{ margin: "20px" }}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      updatePostContent();
+                    }}
+                  >
+                    确认更新
+                  </button>
+                </div>
+              ) : (
+                <MarkdownFactory markdown={postDetail.content} />
+              )}
+            </div>
+            {/* <div className="quillContent">
               <ReactQuill
                 style={{ height: "100%" }}
                 value={postDetail.content}
@@ -166,12 +206,8 @@ function Overview() {
                 ""
               )}
 
-              {/* <div
-            dangerouslySetInnerHTML={{
-              __html: postLoaded ? postDetail.content : "",
-            }}
-          /> */}
-            </div>
+            
+            </div> */}
           </div>
         )}
       </section>

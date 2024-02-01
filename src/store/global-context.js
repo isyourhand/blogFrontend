@@ -19,7 +19,7 @@ export function GlobalStateContextProvider(props) {
   const [reRender, setReRender] = useState(false);
 
   const hostName =
-    process.env.REACT_APP_ENV === "development"
+    process.env.NODE_ENV === "development"
       ? "http://127.0.0.1:4000"
       : "http://8.134.236.92:4000";
 
@@ -56,7 +56,7 @@ export function GlobalStateContextProvider(props) {
 
       const data = await res.json();
 
-      console.log(`this is the fatched ${lan} data`, data.data);
+      // console.log(`this is the fatched ${lan} data`, data.data);
 
       if (lan === "cn") setFolder(data.data.doc);
       else setFolderEn(data.data.doc);
@@ -84,7 +84,7 @@ export function GlobalStateContextProvider(props) {
       if (!data.data.doc) {
         throw new Error(`No data fetched for ${lan}.`);
       }
-      console.log(`this is the fatched ${lan} post data`, data.data);
+      // console.log(`this is the fatched ${lan} post data`, data.data);
 
       setPost(data.data.doc);
     } catch (err) {
