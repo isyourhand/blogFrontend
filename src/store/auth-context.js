@@ -13,11 +13,12 @@ export function AuthStateContextProvider(props) {
   const [loginState, setLoginState] = useState(false);
   const [role, setRole] = useState("user");
 
+  const hostName =
+    process.env.NODE_ENV === "development"
+      ? "http://127.0.0.1:4000"
+      : "http://8.134.236.92:4000";
+
   const getRole = async () => {
-    const hostName =
-      process.env.NODE_ENV === "development"
-        ? "http://127.0.0.1:4000"
-        : "http://8.134.236.92:4000";
     try {
       const res = await fetch(`${hostName}/cn/api/users/whoami`, {
         method: "GET",
@@ -62,6 +63,7 @@ export function AuthStateContextProvider(props) {
     token,
     role,
     loginState,
+    hostName,
   };
 
   return (

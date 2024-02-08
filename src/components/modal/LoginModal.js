@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import "./css/LoginModal.css";
 import AuthStateContext from "../../store/auth-context";
-import axios from "axios";
+
 import AlertModal from "./AlertModal";
 
 function LoginModal(props) {
@@ -19,6 +19,7 @@ function LoginModal(props) {
 
   const changeLoginState = AuthStateCtx.changeLoginState;
   const changeRole = AuthStateCtx.changeRole;
+  const hostName = AuthStateCtx.hostName;
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -47,7 +48,7 @@ function LoginModal(props) {
       //   data,
       // });
 
-      const res = await fetch("http://127.0.0.1:4000/cn/api/users/login", {
+      const res = await fetch(`${hostName}/cn/api/users/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -77,6 +78,8 @@ function LoginModal(props) {
       }
     } catch (err) {
       console.error(err);
+      setMsg("Login Failure!");
+      openAlertModal();
     }
   };
 
