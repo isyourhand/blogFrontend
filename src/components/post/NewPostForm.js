@@ -1,6 +1,6 @@
-import { useRef, useState, useContext } from "react";
+import { useRef, useState } from "react";
 import "./css/NewPostForm.css";
-import QuillHandler from "../quill/QuillHandler";
+
 import NewPostFormFolder from "./NewPostForm_folder";
 import MarkdownFactory from "../markdown/MarkdownFactory";
 // import NewPostFormFolder from "./NewPostForm_folder";
@@ -18,8 +18,6 @@ function NewPostForm(props) {
   const introductionInputEnRef = useRef();
   const keyNameEnRef = useRef();
 
-  const [content_, setContent] = useState("");
-  const [contentEn_, setContentEn] = useState("");
   const [file, setFile] = useState(null);
   const [mdTextContent_cn, setMdTextContent_cn] = useState("");
   const [mdTextContent_en, setMdTextContent_en] = useState("");
@@ -81,10 +79,6 @@ function NewPostForm(props) {
     else props.createPostHandler(postData, selectedOptionEn[0], "en");
   }
 
-  function getValue(value, lan) {
-    lan === "cn" ? setContent(value) : setContentEn(value);
-  }
-
   const toggleDropdown = () => {
     setIsDropdownOpen((prevIsOpen) => !prevIsOpen);
   };
@@ -104,8 +98,6 @@ function NewPostForm(props) {
     console.log("Dropped file:", droppedFile);
 
     setFile(droppedFile);
-
-    const reader = new FileReader();
 
     const textContent = await droppedFile.text();
     if (lan === "cn") setMdTextContent_cn(textContent);

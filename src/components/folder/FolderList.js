@@ -200,6 +200,9 @@ function FolderList(props) {
               e.preventDefault();
               getPostData(file.keyName);
             }}
+            style={{
+              minWidth: "120px",
+            }}
           >
             {file.title.length > 12
               ? `${file.title.slice(0, 30)}...`

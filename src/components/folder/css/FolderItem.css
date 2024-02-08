@@ -19,6 +19,7 @@
 }
 
 .folder a {
+  width: 100%;
   color: black;
   display: flex;
   justify-content: space-between;

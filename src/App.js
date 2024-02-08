@@ -8,8 +8,6 @@ import NewPost from "./pages/NewPost";
 import PostDetail from "./pages/PostDetail";
 import { memo } from "react";
 
-import MarkdownFactory from "./components/markdown/MarkdownFactory";
-
 function App() {
   return (
     <Layout>

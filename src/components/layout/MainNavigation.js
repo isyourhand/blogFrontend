@@ -4,7 +4,7 @@ import { useContext, useRef, useState } from "react";
 import AdviseModal from "../modal/AdviseModal";
 import Backdrop from "../modal/BackDrop";
 import catai from "./img/catai.jpg";
-import github from "./img/social_github.png";
+
 import AuthStateContext from "../../store/auth-context";
 
 function MainNavigation() {
@@ -61,7 +61,7 @@ function MainNavigation() {
             </Link>
           </li>
           <li className="nav__item">
-            <Link className="nav__link" to="/Posts?page=1&limit=3">
+            <Link className="nav__link" to="/Posts?page=1&limit=7">
               Posts
             </Link>
           </li>
@@ -79,17 +79,6 @@ function MainNavigation() {
               className="nav__link nav__link__btn"
               to="https://github.com/isyourhand"
             >
-              {/* <img
-                src={github}
-                alt="github"
-                style={{
-                  width: "30px",
-                  height: "25px",
-                  borderRadius: "50%",
-                  paddingTop: "4px",
-                  paddingRight: "5px",
-                }}
-              /> */}
               MyGithub
             </Link>
           </li>

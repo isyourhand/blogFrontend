@@ -21,13 +21,17 @@ body {
 html {
   font-size: 62.5%;
   box-sizing: border-box;
+  zoom: 0.9;
+  
+  transform-origin: left top;
 }
 
 footer {
+  
   font-size: 130%;
   color: #7a7373;
   padding-top: 70px;
-  
-  height: 100px;
+ 
+  height: 50px;
   width: 100%;
 }

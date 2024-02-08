@@ -77,6 +77,10 @@ function PostListContainer() {
     navigate(`?${queryParams.toString()}`);
   }
 
+  // console.log(loadedPosts);
+
+  const pages = Math.ceil(loadedPosts.results / (queryParams.get("limit") * 1));
+
   return (
     <section className="section_1">
       <section>
@@ -106,9 +110,18 @@ function PostListContainer() {
           </button>
         </li>
 
-        {Array.from({ length: loadedPosts.results / 3 + 1 }, (x, i) => (
-          <PageItem key={i} i={i + 1} />
-        ))}
+        {Array.from(
+          {
+            length: pages,
+          },
+          (x, i) => (
+            <PageItem
+              key={i}
+              i={i + 1}
+              isIt={queryParams.get("page") * 1 === i + 1}
+            />
+          )
+        )}
 
         <li className="page-item">
           <button
@@ -116,7 +129,7 @@ function PostListContainer() {
               pagination(e, 1);
             }}
             className="page-link"
-            disabled={currentPage === 5}
+            disabled={currentPage === pages}
           >
             {">"}
           </button>

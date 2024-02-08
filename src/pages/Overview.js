@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useRef } from "react";
 
 import "./css/Overview.css";
 import "react-quill/dist/quill.bubble.css";
@@ -13,8 +13,9 @@ import AuthStateContext from "../store/auth-context";
 import MarkdownFactory from "../components/markdown/MarkdownFactory";
 
 function Overview() {
+  const siderRef = useRef();
+
   const [editable, setEditable] = useState(false);
-  const [content, setContent] = useState("");
 
   const GlobalStateCtx = useContext(GlobalStateContext);
   const lan = GlobalStateCtx.language;
@@ -39,15 +40,6 @@ function Overview() {
     });
   }
 
-  const handleContentChange = (value) => {
-    console.log(value);
-    console.log("postDetail", postDetail);
-    if (editable) {
-      postDetail.content = value;
-      setContent(value);
-    }
-  };
-
   async function updatePostContent() {
     try {
       const doc = await fetch(
@@ -71,6 +63,16 @@ function Overview() {
   const handleInput = (e) => {
     console.log(e.target.innerText);
     postDetail.content = e.target.innerText;
+  };
+
+  const closeSider = () => {
+    console.dir(siderRef.current.style);
+
+    // var width = siderRef.current.style.width;
+    // siderRef.current.style.width = width === "0px" ? "225px" : 0;
+
+    const hidden = siderRef.current.hidden;
+    siderRef.current.hidden = !hidden;
   };
 
   const Welcome_cn = `# 欢迎来到我的博客
@@ -100,7 +102,7 @@ function Overview() {
 
   return (
     <section className="Background">
-      <section className="sidercontent">
+      <section className="sidercontent" ref={siderRef}>
         {dir.length !== 0 ? (
           <FolderList
             id={dir.id}
@@ -115,6 +117,9 @@ function Overview() {
           ""
         )}
       </section>
+      <div className="close-open" onClick={closeSider}>
+        {"|"}
+      </div>
       <section className="postContent">
         {role === "admin" ? (
           <button className="updateButton" onClick={editableHandeler}>

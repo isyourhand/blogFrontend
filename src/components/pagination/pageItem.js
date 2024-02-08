@@ -5,6 +5,11 @@ function PageItem(props) {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
 
+  const i = props.i;
+  const isIt = props.isIt;
+
+  // console.log(i, isIt);
+
   const navigate = useNavigate();
 
   function pageHandler(e, num) {
@@ -17,9 +22,10 @@ function PageItem(props) {
     <li className="page-item">
       <button
         onClick={(e) => {
-          pageHandler(e, props.i);
+          pageHandler(e, i);
         }}
         className="page-link"
+        style={{ backgroundColor: isIt ? "#4bbb7d" : "" }}
       >
         {props.i}
       </button>

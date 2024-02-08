@@ -3,6 +3,7 @@ import "./css/PostDetail.css";
 import { useEffect, useState, useContext } from "react";
 
 import GlobalStateContext from "../store/global-context";
+import MarkdownFactory from "../components/markdown/MarkdownFactory";
 
 function PostDetail() {
   let { postId } = useParams();
@@ -55,7 +56,7 @@ function PostDetail() {
           <span className="category">{secondTopic}</span>
         </div>
         <div className="blog-content">
-          <div dangerouslySetInnerHTML={{ __html: content }} />
+          <MarkdownFactory markdown={content} />
         </div>
       </div>
     );
