@@ -21,11 +21,12 @@ function PostListContainer() {
   const GlobalStateCtx = useContext(GlobalStateContext);
 
   const lan = GlobalStateCtx.language;
+  const hostName = GlobalStateCtx.hostName;
 
   useEffect(() => {
     setCurrentPage(queryParams.get("page") * 1);
 
-    fetch(`http://127.0.0.1:4000/${lan}/api/post?${queryParams.toString()}`, {
+    fetch(`${hostName}/${lan}/api/post?${queryParams.toString()}`, {
       method: "GET",
     })
       .then((res) => {
