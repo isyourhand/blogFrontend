@@ -18,6 +18,7 @@ function FloatingButton() {
 
   const lan = GlobalStateCtx.language;
   const setLanguage = GlobalStateCtx.changeLanguage;
+  const hostName = AuthStateCtx.hostName;
   const loginState = AuthStateCtx.loginState;
   const changeLoginState = AuthStateCtx.changeLoginState;
   const changeRole = AuthStateCtx.changeRole;
@@ -35,7 +36,7 @@ function FloatingButton() {
 
   async function loginOutHandler() {
     try {
-      const res = await fetch("http://127.0.0.1:4000/cn/api/users/login", {
+      const res = await fetch(`${hostName}/cn/api/users/login`, {
         method: "GET",
         credentials: "include",
       });
