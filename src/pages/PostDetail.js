@@ -9,19 +9,19 @@ function PostDetail() {
   let { postId } = useParams();
   let { state } = useLocation();
 
-  const [isLoading, setIsLoading] = useState(false);
   const [loadedPost, setloadedPost] = useState([]);
 
   const GlobalStateCtx = useContext(GlobalStateContext);
 
   const lan = GlobalStateContext.language;
+  const hostName = GlobalStateCtx.hostName;
 
   console.log(lan);
 
   useEffect(() => {
     if (!state) {
       console.log("need to fetch data.");
-      fetch(`http://127.0.0.1:4000/${lan}/api/post/${postId}`, {
+      fetch(`${hostName}/${lan}/api/post/${postId}`, {
         method: "GET",
       })
         .then((res) => {
@@ -35,7 +35,6 @@ function PostDetail() {
           console.log(data);
           if (data.data.doc) {
             setloadedPost(data.data.doc);
-            setIsLoading(true);
           }
         })
         .catch((err) => {

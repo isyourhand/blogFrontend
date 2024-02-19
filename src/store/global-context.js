@@ -21,7 +21,7 @@ export function GlobalStateContextProvider(props) {
   const hostName =
     process.env.NODE_ENV === "development"
       ? "http://127.0.0.1:4000"
-      : "http://8.134.236.92:4000";
+      : "http://llog.top:4000";
 
   function changeLanguageHandler(lan) {
     console.log(lan);

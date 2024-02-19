@@ -8,23 +8,21 @@ function NewPost() {
 
   const dir = GlobalStateCtx.folder;
   const dirEn = GlobalStateCtx.folderEn;
+  const hostName = GlobalStateCtx.hostName;
 
   console.log("dir", dir, "dirEn", dirEn, 1);
 
   async function createPostHandler(postData, id, lan) {
     try {
       console.log("there is folder id ->", id);
-      const response = await fetch(
-        `http://127.0.0.1:4000/${lan}/api/post/${id}`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          credentials: "include",
-          body: JSON.stringify(postData),
-        }
-      );
+      const response = await fetch(`${hostName}/${lan}/api/post/${id}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+        body: JSON.stringify(postData),
+      });
 
       if (!response.ok) {
         throw new Error("Failed to create post");
