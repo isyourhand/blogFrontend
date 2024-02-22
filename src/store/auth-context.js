@@ -16,7 +16,7 @@ export function AuthStateContextProvider(props) {
   const hostName =
     process.env.NODE_ENV === "development"
       ? "http://127.0.0.1:4000"
-      : "http://llog.top:4000";
+      : "https://llog.top:4000";
 
   const getRole = async () => {
     try {

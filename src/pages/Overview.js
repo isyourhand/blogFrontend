@@ -21,6 +21,7 @@ function Overview() {
   const lan = GlobalStateCtx.language;
   const dir = lan === "cn" ? GlobalStateCtx.folder : GlobalStateCtx.folderEn;
   const postDetail = GlobalStateCtx.post[lan];
+  const hostName = GlobalStateCtx.hostName;
 
   const AuthStateCtx = useContext(AuthStateContext);
   const role = AuthStateCtx.role;
@@ -42,17 +43,14 @@ function Overview() {
 
   async function updatePostContent() {
     try {
-      const doc = await fetch(
-        `http://127.0.0.1:4000/${lan}/api/post/${postDetail._id}`,
-        {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          credentials: "include",
-          body: JSON.stringify({ content: postDetail.content }),
-        }
-      );
+      const doc = await fetch(`${hostName}/${lan}/api/post/${postDetail._id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+        body: JSON.stringify({ content: postDetail.content }),
+      });
 
       console.log(doc);
     } catch (err) {
