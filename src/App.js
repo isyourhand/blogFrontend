@@ -25,7 +25,6 @@ function App() {
 export default App;
 
 const Greeting = memo(function Greeting({ name }) {
-  console.log("Greeting was rendered at", new Date().toLocaleTimeString());
   return (
     <footer>
       <p>&copy; LYX BLOG. All Rights Reserved.</p>
