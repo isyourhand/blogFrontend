@@ -59,15 +59,16 @@ function PostListContainer() {
   }
 
   const labelUrl = {
-    Frontend: "topic=Frontend&page=1&limit=3",
-    Backend: "topic=Backend&page=1&limit=3",
-    javascript: "secondTopic=javascript&page=1&limit=3",
-    nodejs: "secondTopic=nodejs&page=1&limit=3",
-    reactjs: "secondTopic=reactjs&page=1&limit=3",
-    mongodb: "secondTopic=mongodb&page=1&limit=3",
-    redis: "secondTopic=redis&page=1&limit=3",
-    css: "secondTopic=css&page=1&limit=3",
-    html: "secondTopic=html&page=1&limit=3",
+    Frontend: "topic=Frontend&page=1&limit=7",
+    Backend: "topic=Backend&page=1&limit=7",
+    javascript: "secondTopic=javascript&page=1&limit=7",
+    nodejs: "secondTopic=nodejs&page=1&limit=7",
+    reactjs: "secondTopic=reactjs&page=1&limit=7",
+    mongodb: "secondTopic=mongodb&page=1&limit=7",
+    redis: "secondTopic=redis&page=1&limit=7",
+    express: "secondTopic=express&page=1&limit=7",
+    linux: "secondTopic=linux&page=1&limit=7",
+    windows: "secondTopic=windows&page=1&limit=7",
   };
 
   function pagination(e, num) {
@@ -78,7 +79,7 @@ function PostListContainer() {
     navigate(`?${queryParams.toString()}`);
   }
 
-  // console.log(loadedPosts);
+  console.log(loadedPosts);
 
   const pages = Math.ceil(loadedPosts.results / (queryParams.get("limit") * 1));
 

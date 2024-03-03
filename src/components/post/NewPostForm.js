@@ -131,10 +131,11 @@ function NewPostForm(props) {
             <option value="reactjs">reactjs</option>
             <option value="nodejs">nodejs</option>
             <option value="javascript">javascript</option>
-            <option value="css">css</option>
-            <option value="html">html</option>
+            <option value="express">express</option>
+            <option value="windows">windows</option>
             <option value="mongodb">mongodb</option>
             <option value="redis">redis</option>
+            <option value="linux">linux</option>
           </select>
         </div>
         <div>
@@ -237,10 +238,11 @@ function NewPostForm(props) {
             <option value="reactjs">reactjs</option>
             <option value="nodejs">nodejs</option>
             <option value="javascript">javascript</option>
-            <option value="css">css</option>
-            <option value="html">html</option>
+            <option value="express">express</option>
+            <option value="windows">windows</option>
             <option value="mongodb">mongodb</option>
             <option value="redis">redis</option>
+            <option value="linux">linux</option>
           </select>
         </div>
         <div>
