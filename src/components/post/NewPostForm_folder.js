@@ -9,7 +9,7 @@ function NewPostFormFolder(props) {
   const getFolderIdAndName = props.getFolderIdAndName;
 
   const toggleFolder = (e, depth, length, i) => {
-    // e.stopPropagation();
+    e.stopPropagation();
 
     const subfolders = e.target.parentNode.children;
     // console.log(subfolders);
