@@ -9,7 +9,7 @@ a {
     font-size: 13px;
     margin-bottom: 30px;
     display:flex;
-    
+    flex-wrap: wrap; /* 允许项目在宽度不够时换行 */
     /* justify-content: center; */
 }
 

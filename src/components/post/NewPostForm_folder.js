@@ -9,10 +9,12 @@ function NewPostFormFolder(props) {
   const getFolderIdAndName = props.getFolderIdAndName;
 
   const toggleFolder = (e, depth, length, i) => {
-    e.stopPropagation();
+    // e.stopPropagation();
 
     const subfolders = e.target.parentNode.children;
-
+    // console.log(subfolders);
+    // console.log(1, e.target); // 可以看到点击事件在哪个元素发生，因为e和触发元素里的e是同一个。
+    // console.log(2, e.currentTarget);
     for (let i = 1; i < subfolders.length; i++) {
       subfolders[i].hidden = !subfolders[i].hidden;
     }

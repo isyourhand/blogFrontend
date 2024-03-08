@@ -86,7 +86,7 @@ function PostListContainer() {
   return (
     <section className="section_1">
       <section>
-        <label className="Labels_">
+        <div className="Labels_">
           {Object.keys(labelUrl).map((topic, i) => {
             return (
               <Link to={`?${labelUrl[topic]}`} key={i}>
@@ -94,7 +94,7 @@ function PostListContainer() {
               </Link>
             );
           })}
-        </label>
+        </div>
 
         <PostList posts={loadedPosts.data.posts} />
       </section>

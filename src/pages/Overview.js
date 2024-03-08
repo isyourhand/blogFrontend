@@ -43,6 +43,7 @@ function Overview() {
 
   async function updatePostContent() {
     try {
+      console.log(JSON.stringify({ content: postDetail.content }));
       const doc = await fetch(`${hostName}/${lan}/api/post/${postDetail._id}`, {
         method: "PATCH",
         headers: {
