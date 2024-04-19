@@ -1,4 +1,4 @@
-import { useState, useContext, useRef } from "react";
+import { useState, useContext, useRef, useEffect } from "react";
 
 import "./css/Overview.css";
 import "react-quill/dist/quill.bubble.css";
@@ -11,11 +11,14 @@ import GlobalStateContext from "../store/global-context";
 import editImg from "./img/edit.png";
 import AuthStateContext from "../store/auth-context";
 import MarkdownFactory from "../components/markdown/MarkdownFactory";
+import PostList from "../components/post/PostList";
+import { getPosts } from "../store/backEndResAcq";
 
 function Overview() {
   const siderRef = useRef();
 
   const [editable, setEditable] = useState(false);
+  let [loadedPosts, setloadedPosts] = useState([]);
 
   const GlobalStateCtx = useContext(GlobalStateContext);
   const lan = GlobalStateCtx.language;
@@ -99,6 +102,11 @@ function Overview() {
   &nbsp;  
   **The green button in the bottom right corner allows you to switch languages, supporting only Chinese and English. (My English proficiency is average, mainly relying on GPT for translation. 😢)**`;
 
+  useEffect(() => {
+    const queryParams = "page=1&limit=10";
+    getPosts(hostName, lan, queryParams, null, setloadedPosts);
+  }, []);
+
   return (
     <section className="Background">
       <section className="sidercontent" ref={siderRef}>
@@ -133,7 +141,28 @@ function Overview() {
         )}
 
         {!postDetail ? (
-          <MarkdownFactory markdown={lan === "cn" ? Welcome_cn : Welcome_en} />
+          <div>
+            <MarkdownFactory
+              markdown={
+                (lan === "cn" ? Welcome_cn : Welcome_en) +
+                `
+&nbsp;  
+
+---------------------------------------------------------------------------------------
+
+&nbsp;  
+### 最新  
+`
+              }
+            />
+            <div style={{ padding: "20px 20px" }}>
+              {loadedPosts.length !== 0 ? (
+                <PostList posts={loadedPosts.data.posts} />
+              ) : (
+                ""
+              )}{" "}
+            </div>
+          </div>
         ) : (
           <div>
             {postDetail.title !== "Welcome" && postDetail.title !== "欢迎" ? (

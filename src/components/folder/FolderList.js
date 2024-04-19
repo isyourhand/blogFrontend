@@ -1,11 +1,9 @@
-import ReactDOM from "react-dom";
-
 import { Link } from "react-router-dom";
 
 import "./css/FolderItem.css";
 import downArrow from "./img/downArrow.png";
 import upArrow from "./img/upArrow.png";
-import { useEffect, useState, memo, useContext, useRef } from "react";
+import { useEffect, useState, useContext, useRef } from "react";
 import ContextMenuModal from "../modal/ContextMenuModal";
 import CreateFolderModal from "../modal/CreateFolderModal";
 import DeleteFolderModal from "../modal/DeleteFolderModal";
@@ -42,7 +40,7 @@ function FolderList(props) {
   // );
 
   const GlobalStateCtx = useContext(GlobalStateContext);
-  const reRender = GlobalStateCtx.reRender;
+  // const reRender = GlobalStateCtx.reRender;
 
   const handleContextMenu = (event) => {
     event.preventDefault(); // 阻止默认右键菜单
@@ -204,7 +202,7 @@ function FolderList(props) {
               minWidth: "120px",
             }}
           >
-            {file.title.length > 12
+            {file.title.length > 30
               ? `${file.title.slice(0, 30)}...`
               : file.title.slice(0, 30)}
           </Link>

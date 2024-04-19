@@ -6,6 +6,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import LabelItem from "../components/label/LabelItem";
 import PageItem from "../components/pagination/pageItem";
 import GlobalStateContext from "../store/global-context";
+import { getPosts } from "../store/backEndResAcq";
 
 function PostListContainer() {
   const navigate = useNavigate();
@@ -26,28 +27,30 @@ function PostListContainer() {
   useEffect(() => {
     setCurrentPage(queryParams.get("page") * 1);
 
-    fetch(`${hostName}/${lan}/api/post?${queryParams.toString()}`, {
-      method: "GET",
-    })
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error(`HTTP error! Status: ${res.status}`);
-        }
-        return res.json();
-      })
-      .then((data) => {
-        if (data && data.data && data.data.posts) {
-          console.log("posts data ->", data);
-          setIsLoading(false);
-          setloadedPosts(data);
-        } else {
-          console.error("Ivalid data format:", data);
-        }
-      })
-      .catch((err) => {
-        setIsLoading(false);
-        console.log(err);
-      });
+    getPosts(hostName, lan, queryParams, setIsLoading, setloadedPosts);
+
+    // fetch(`${hostName}/${lan}/api/post?${queryParams.toString()}`, {
+    //   method: "GET",
+    // })
+    //   .then((res) => {
+    //     if (!res.ok) {
+    //       throw new Error(`HTTP error! Status: ${res.status}`);
+    //     }
+    //     return res.json();
+    //   })
+    //   .then((data) => {
+    //     if (data && data.data && data.data.posts) {
+    //       console.log("posts data ->", data);
+    //       setIsLoading(false);
+    //       setloadedPosts(data);
+    //     } else {
+    //       console.error("Ivalid data format:", data);
+    //     }
+    //   })
+    //   .catch((err) => {
+    //     setIsLoading(false);
+    //     console.log(err);
+    //   });
   }, [location.search, lan]);
 
   if (isLoading) {
@@ -79,7 +82,7 @@ function PostListContainer() {
     navigate(`?${queryParams.toString()}`);
   }
 
-  console.log(loadedPosts);
+  // console.log(loadedPosts);
 
   const pages = Math.ceil(loadedPosts.results / (queryParams.get("limit") * 1));
 

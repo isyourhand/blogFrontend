@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext } from "react";
+import { useContext } from "react";
 
 import NewPostForm from "../components/post/NewPostForm";
 import GlobalStateContext from "../store/global-context";

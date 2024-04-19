@@ -9,6 +9,8 @@ function PostDetail() {
   let { postId } = useParams();
   let { state } = useLocation();
 
+  console.log(state);
+
   const [loadedPost, setloadedPost] = useState([]);
 
   const GlobalStateCtx = useContext(GlobalStateContext);

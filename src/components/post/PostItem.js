@@ -2,10 +2,18 @@ import { Link } from "react-router-dom";
 import "./css/PostItem.css";
 
 function PostItem(props) {
+  const frontEndHostname = window.location.origin;
+
+  console.log(frontEndHostname);
+
   return (
     <li className="post">
       <div className="post-labels-container">
-        <Link to={`${props._id}`} state={props} className="post-title-link">
+        <Link
+          to={`${frontEndHostname}/Posts/${props._id}`}
+          state={props}
+          className="post-title-link"
+        >
           <h2 className="post-title">{`${props.title}`}</h2>
         </Link>
 
