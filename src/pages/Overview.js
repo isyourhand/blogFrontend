@@ -105,7 +105,7 @@ function Overview() {
   useEffect(() => {
     const queryParams = "page=1&limit=10";
     getPosts(hostName, lan, queryParams, null, setloadedPosts);
-  }, []);
+  }, [lan]);
 
   return (
     <section className="Background">
